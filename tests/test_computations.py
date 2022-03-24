@@ -1,5 +1,5 @@
-'''Test vectorND computations code.
-'''
+"""Test vectorND computations code.
+"""
 import unittest
 
 from fastvector import VectorND
@@ -18,25 +18,22 @@ class ComputationsTests(unittest.TestCase):
         python_clip_vector(self.v1, -1, 1, result)
         expected_result = self.v2
         self.assertEqual(result, expected_result)
-        self.assertRaises(ValueError, python_clip_vector,
-                          self.v1, 1, -1, result)
+        self.assertRaises(ValueError, python_clip_vector, self.v1, 1, -1, result)
 
     def test_naive_cython_clip_vector(self) -> None:
         result = VectorND(0, 0)
         naive_cython_clip_vector(self.v1, -1, 1, result)
         expected_result = self.v2
         self.assertEqual(result, expected_result)
-        self.assertRaises(ValueError, naive_cython_clip_vector,
-                          self.v1, 1, -1, result)
+        self.assertRaises(ValueError, naive_cython_clip_vector, self.v1, 1, -1, result)
 
     def test_cython_clip_vector(self) -> None:
         result = VectorND(0, 0)
         cython_clip_vector(self.v1, -1, 1, result)
         expected_result = self.v2
         self.assertEqual(result, expected_result)
-        self.assertRaises(ValueError, cython_clip_vector,
-                          self.v1, 1, -1, result)
+        self.assertRaises(ValueError, cython_clip_vector, self.v1, 1, -1, result)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
